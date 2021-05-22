@@ -1,6 +1,8 @@
 package threads;
 
-	public class Thread_Flag extends Thread{
+import model.Color;
+
+public class Thread_Flag extends Thread{
 		
 	public static final String ESC = "\u001B[";
 		
@@ -9,15 +11,17 @@ package threads;
 	private int z;
 	private int w;
 	private int sleep;
-	private String color;
+	private String option;
+	private Color color;
 		
-	public Thread_Flag(int x, int y,int z,int w, int sleep, String color) {
+	public Thread_Flag(int x, int y,int z,int w, int sleep, String option) {
 		this.x=x;
 		this.y=y;
 		this.z=z;
 		this.w=w;
 		this.sleep=sleep;
-		this.color=color;
+		this.option=option;
+		color = new Color();
 	}
 		
 	@Override
@@ -28,7 +32,7 @@ package threads;
 	public synchronized void paintFlag() {
 		for(int i=x;i<y;i++) {
 			for(int j=z;j<w;j++) {
-				System.out.print(ESC+i+"G"+ESC+j+"d"+color);
+				System.out.print(ESC+i+"G"+ESC+j+"d"+color.color(option));
 				try {
 					Thread.sleep(sleep);
 				}catch (InterruptedException e) {
